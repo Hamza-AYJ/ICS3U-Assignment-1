@@ -25,9 +25,8 @@ void intro() {
   text ("Click on the buttons on the side of the screen to select your game :)", 5, 80);
 }
 
+//function for input sections(Math Game)
 void keyPressed() {
-  if (key==d);
-  
 }
 
 //Variables for the rectangles
@@ -43,7 +42,11 @@ int c= int(random(2));
 int d= a+b;
 int e= a-b;
 int f= a*b;
+int answer;
 
+//variables for non-math game
+float g= random(400);
+float h= random(500);
 
 void draw() {
   //rectangle boxes(buttons)
@@ -55,7 +58,7 @@ void draw() {
   fill (204, 204, 204);
   rect (w, z, 25, 25);
 
-  if (mouseX> x && mouseY > z && mousePressed) {
+  if (mouseX > x && mouseY > z && mousePressed) {
     //background and colour/text settings
     intro();
     textSize(16);
@@ -66,7 +69,7 @@ void draw() {
     fill (0);
     text ("Non-Math Game-->", 410, 575, 190, 130);
   }
-  if (mouseX> x && mouseY > y && mousePressed) {
+  if (mouseX > x && mouseY > y && mousePressed) {
     //background and colour/text settings
     background (0);
     textSize(16);
@@ -82,24 +85,38 @@ void draw() {
     textSize(16);
     text (a, 20, 20);
     text (b, 50, 20);
+
+    //addition
     if (c==0) {
+      //formatting
       fill(255);
       textSize(16);
       text ("+", 35, 20);
-      
+      //equation: input and check
+      answer = d;
     }
+    //subtraction
     if (c==1) {
+      //formatting
       fill(255);
       textSize(16);
       text ("-", 35, 20);
+      //equation: input and check
+      answer = e;
     }    
+
+    //multiplication
     if (c==2) {
+      //formatting
       fill(255);
       textSize(16);
       text ("x", 35, 20);
+      //equation: input and check
+      answer = f;
     }
   }
-  if (mouseX> x && mouseY > w && mousePressed) {
+
+  if (mouseX > x && mouseY > w && mousePressed) {
     //background and colour/text settings
     background (255);
     textSize(16);
@@ -111,5 +128,18 @@ void draw() {
     text ("Non-Math Game-->", 410, 575, 190, 130);
 
     //Non-Math Game
+    //setup
+    fill (0);
+    textSize(20);
+    text("Click on the circles", 20, 20);
+    //actual game
+    ellipse (g, h, 30, 30);
+    if (mousePressed) {
+      fill(0);
+      textSize(15);
+      text("good job", 30, 40);
+    } else {
+      text("try again noob", 30, 40);
+    }
   }
 }
