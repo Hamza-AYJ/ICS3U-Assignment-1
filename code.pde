@@ -1,6 +1,6 @@
-void setup() {
+void setup() { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   size (600, 600);
-  background(255, 165, 140);
+  background(156, 175, 206);
   fill(219, 219, 219);
   textSize (32);
   text ("Assignment 1: by Hamza Shaikh", 10, 30);
@@ -12,6 +12,9 @@ void setup() {
   text ("Math Game-->", 450, 545, 140, 130);
   fill (0);
   text ("Non-Math Game-->", 410, 575, 190, 130);
+
+  circleX= random(400);
+  circleY= random (500);
 }
 
 //Intro Screen
@@ -26,8 +29,7 @@ void intro() {
 }
 
 //function for input sections(Math Game)
-void keyPressed() {
-}
+
 
 //Variables for the rectangles
 int x= 575;
@@ -43,10 +45,11 @@ int d= a+b;
 int e= a-b;
 int f= a*b;
 int answer;
+int key;
 
 //variables for non-math game
-float g= random(400);
-float h= random(500);
+float circleX;
+float circleY;
 
 void draw() {
   //rectangle boxes(buttons)
@@ -114,8 +117,16 @@ void draw() {
       //equation: input and check
       answer = f;
     }
-  }
 
+    if (keyPressed == true) {
+      if (key==answer) {
+        fill(255);
+        text("good job", 30, 30);
+      } else {
+        text("wrong", 30, 30);
+      }
+    }
+  }
   if (mouseX > x && mouseY > w && mousePressed) {
     //background and colour/text settings
     background (255);
@@ -127,19 +138,31 @@ void draw() {
     fill (255);
     text ("Non-Math Game-->", 410, 575, 190, 130);
 
-    //Non-Math Game
-    //setup
-    fill (0);
-    textSize(20);
-    text("Click on the circles", 20, 20);
-    //actual game
-    ellipse (g, h, 30, 30);
     if (mousePressed) {
-      fill(0);
-      textSize(15);
-      text("good job", 30, 40);
-    } else {
-      text("try again noob", 30, 40);
+      //Non-Math Game
+      //setup
+      fill (0);
+      textSize(20);
+      text("Click on the circles, make sure to press the exact centre", 20, 20);
+      //actual game
+      ellipse (circleX, circleY, 20, 20);
     }
+  }
+}
+
+void mousePressed() {
+     // text("good job", 30, 40);
+
+  if (mousePressed == true && mouseX < circleX+30/2 && mouseX > circleX-30/2 && mouseY < circleY+30/2 && mouseY> circleY-30/2) {
+    fill(0);
+    textSize(15);
+    text("good job", 30, 40);
+    delay(1000);
+    setup();
+  } else {
+    fill(0);
+    text("try again", 30, 40);
+    delay(100);
+    setup();
   }
 }
