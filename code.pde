@@ -1,6 +1,6 @@
-void setup() {
+void setup() { 
   size (600, 600);
-  background(255, 165, 140);
+  background(156, 175, 206);
   fill(219, 219, 219);
   textSize (32);
   text ("Assignment 1: by Hamza Shaikh", 10, 30);
@@ -12,11 +12,18 @@ void setup() {
   text ("Math Game-->", 450, 545, 140, 130);
   fill (0);
   text ("Non-Math Game-->", 410, 575, 190, 130);
+
+  circleX= random(400);
+  circleY= random (500);
+
+  a= int(random(10));
+  b= int(random(10));
+  c= int(random(2));
 }
 
 //Intro Screen
 void intro() {
-  background(255, 165, 140);
+  background(156, 175, 206);
   fill(219, 219, 219);
   textSize (32);
   text ("Assignment 1: by Hamza Shaikh", 10, 30);
@@ -26,8 +33,7 @@ void intro() {
 }
 
 //function for input sections(Math Game)
-void keyPressed() {
-}
+
 
 //Variables for the rectangles
 int x= 575;
@@ -36,17 +42,18 @@ int y= 545;
 int z= 515;
 
 //Variables for math game
-int a= int(random(10));
-int b= int(random(10));
-int c= int(random(2));
-int d= a+b;
-int e= a-b;
-int f= a*b;
+int a;
+int b;
+int c;
+//int d= a+b;
+//int e= a-b;
+//int f= a*b;
 int answer;
+int key;
 
 //variables for non-math game
-float g= random(400);
-float h= random(500);
+float circleX;
+float circleY;
 
 void draw() {
   //rectangle boxes(buttons)
@@ -75,8 +82,8 @@ void draw() {
     textSize(16);
     fill(219, 219, 219);
     text ("Intro--> ", 500, 515, 140, 130);
-    fill (0);
-    text ("Math Game-->", 450, 545, 140, 130);
+    fill (255);
+    text ("New Question-->", 450, 545, 140, 130);
     fill (255);
     text ("Non-Math Game-->", 410, 575, 190, 130);
 
@@ -93,7 +100,7 @@ void draw() {
       textSize(16);
       text ("+", 35, 20);
       //equation: input and check
-      answer = d;
+      answer=a+b;
     }
     //subtraction
     if (c==1) {
@@ -102,7 +109,7 @@ void draw() {
       textSize(16);
       text ("-", 35, 20);
       //equation: input and check
-      answer = e;
+      answer=a-b;
     }    
 
     //multiplication
@@ -112,10 +119,9 @@ void draw() {
       textSize(16);
       text ("x", 35, 20);
       //equation: input and check
-      answer = f;
+      answer=a*b;
     }
   }
-
   if (mouseX > x && mouseY > w && mousePressed) {
     //background and colour/text settings
     background (255);
@@ -127,19 +133,42 @@ void draw() {
     fill (255);
     text ("Non-Math Game-->", 410, 575, 190, 130);
 
-    //Non-Math Game
-    //setup
-    fill (0);
-    textSize(20);
-    text("Click on the circles", 20, 20);
-    //actual game
-    ellipse (g, h, 30, 30);
     if (mousePressed) {
-      fill(0);
-      textSize(15);
-      text("good job", 30, 40);
-    } else {
-      text("try again noob", 30, 40);
+      //Non-Math Game
+      //setup
+      fill (0);
+      textSize(20);
+      text("Click on the circles, delay means you win", 20, 20);
+      //actual game
+      ellipse (circleX, circleY, 20, 20);
     }
+  }
+}
+
+void mousePressed() {
+  if (mousePressed == true && mouseX < circleX+30/2 && mouseX > circleX-30/2 && mouseY < circleY+30/2 && mouseY> circleY-30/2) {
+    fill(0);
+    textSize(15);
+    text("good job", 30, 40);
+    delay(1000);
+    setup();
+  } else {
+    fill(0);
+    text("try again", 30, 40);
+    delay(100);
+    setup();
+  }
+}
+
+void keyPressed() {
+  if (key== answer) {
+    fill (255);
+    text ("right", 30, 30);
+    //delay(2000);
+    text ("right", 30, 30);
+  } else {
+    text("wrong", 30, 30);
+    //delay(200);
+    text("wrong", 30, 30);
   }
 }
