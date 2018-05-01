@@ -15,10 +15,12 @@ void setup() {
 
   circleX= random(400);
   circleY= random (500);
-
+  
   a= int(random(10));
-  b= int(random(10));
+  b= int(random(a));
   c= int(random(2));
+  println(c);
+ // println(answer);
 }
 
 //Intro Screen
@@ -45,9 +47,7 @@ int z= 515;
 int a;
 int b;
 int c;
-//int d= a+b;
-//int e= a-b;
-//int f= a*b;
+
 int answer;
 int key;
 
@@ -138,7 +138,7 @@ void draw() {
       //setup
       fill (0);
       textSize(20);
-      text("Click on the circles, delay means you win", 20, 20);
+      text("Click on the circles,", 20, 20);
       //actual game
       ellipse (circleX, circleY, 20, 20);
     }
@@ -161,14 +161,12 @@ void mousePressed() {
 }
 
 void keyPressed() {
-  if (key== answer) {
+  //println(answer);
+  println(key);
+  if (key == answer) {
     fill (255);
     text ("right", 30, 30);
-    //delay(2000);
-    text ("right", 30, 30);
   } else {
-    text("wrong", 30, 30);
-    //delay(200);
     text("wrong", 30, 30);
   }
 }
